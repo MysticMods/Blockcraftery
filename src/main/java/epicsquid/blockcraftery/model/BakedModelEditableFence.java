@@ -29,34 +29,26 @@ import net.minecraftforge.common.model.IModelState;
 
 public class BakedModelEditableFence extends BakedModelEditable {
   public static Map<String, List<BakedQuad>> data = new HashMap<>();
-  Cube baked_post, baked_west, baked_east, baked_west_top, baked_east_top;
-
-  public static Vec4f FULL_FACE_UV = new Vec4f(0, 0, 16, 16);
-  public static Vec4f BOTTOM_SIDE_UV = new Vec4f(0, 8, 16, 8);
-  public static Vec4f TOP_SIDE_UV = new Vec4f(0, 0, 16, 8);
-  public static Vec4f[] bottomUV = new Vec4f[] { BOTTOM_SIDE_UV, BOTTOM_SIDE_UV, FULL_FACE_UV, FULL_FACE_UV, BOTTOM_SIDE_UV, BOTTOM_SIDE_UV };
-  public static Vec4f[] topUV = new Vec4f[] { TOP_SIDE_UV, TOP_SIDE_UV, FULL_FACE_UV, FULL_FACE_UV, TOP_SIDE_UV, TOP_SIDE_UV };
+  Cube baked_post_right, baked_post_left, baked_west, baked_west_top;
 
   public BakedModelEditableFence(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter,
       CustomModelBase model) {
     super(state, format, bakedTextureGetter, model);
     TextureAtlasSprite[] texes = new TextureAtlasSprite[] { texwest, texeast, texdown, texup, texnorth, texsouth };
-    baked_post = ModelUtil.makeCube(format, 0.375, 0, 0.375, 0.25, 1, 0.25, null, texes, -1);
-    baked_west = ModelUtil.makeCube(format, 0, 0.375, 0.4375, 0.5, 0.1875, 0.125, null, texes, -1);
-    baked_east = ModelUtil.makeCube(format, 0.5, 0.375, 0.4375, 0.5, 0.1875, 0.125, null, texes, -1);
-    baked_west_top = ModelUtil.makeCube(format, 0, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, -1);
-    baked_east_top = ModelUtil.makeCube(format, 0.5, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, -1);
+    baked_post_right = makePostCube(format, 0, 0, 0.375, 0.25, 1, 0.25, null, texes, 0);
+    baked_post_left = makePostCube(format, 0.75, 0, 0.375, 0.25, 1, 0.25, null, texes, 0);
+    baked_west = ModelUtil.makeCube(format, 0, 0.375, 0.4375, 1, 0.1875, 0.125, null, texes, 0);
+    baked_west_top = ModelUtil.makeCube(format, 0, 0.75, 0.4375, 1, 0.1875, 0.125, null, texes, 0);
   }
 
   @Override
   public void addGeometry(List<BakedQuad> quads, EnumFacing side, IBlockState state, TextureAtlasSprite[] texes, int tintIndex) {
     Cube post, north, south, west, east, north_top, south_top, west_top, east_top;
-    boolean up = state.getValue(BlockWall.UP);
     boolean cnorth = state.getValue(BlockWall.NORTH);
     boolean csouth = state.getValue(BlockWall.SOUTH);
     boolean cwest = state.getValue(BlockWall.WEST);
     boolean ceast = state.getValue(BlockWall.EAST);
-    post = ModelUtil.makeCube(format, 0.375, 0, 0.375, 0.25, 1, 0.25, null, texes, tintIndex);
+    post = makePostCube(format, 0.375, 0, 0.375, 0.25, 1, 0.25, null, texes, tintIndex);
     north = ModelUtil.makeCube(format, 0.4375, 0.375, 0, 0.125, 0.1875, 0.5, null, texes, tintIndex);
     south = ModelUtil.makeCube(format, 0.4375, 0.375, 0.5, 0.125, 0.1875, 0.5, null, texes, tintIndex);
     west = ModelUtil.makeCube(format, 0, 0.375, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
@@ -66,9 +58,7 @@ public class BakedModelEditableFence extends BakedModelEditable {
     south_top = ModelUtil.makeCube(format, 0.4375, 0.75, 0.5, 0.125, 0.1875, 0.5, null, texes, tintIndex);
     west_top = ModelUtil.makeCube(format, 0, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
     east_top = ModelUtil.makeCube(format, 0.5, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
-    if (up) {
-      post.addToList(quads, side);
-    }
+    post.addToList(quads, side);
     if (cnorth) {
       north.addToList(quads, side);
       north_top.addToList(quads, side);
@@ -124,11 +114,15 @@ public class BakedModelEditableFence extends BakedModelEditable {
 
   @Override
   public void addItemModel(List<BakedQuad> quads, EnumFacing side) {
-    baked_post.addToList(quads, side);
-    baked_east.addToList(quads, side);
+    baked_post_right.addToList(quads, side);
+    baked_post_left.addToList(quads, side);
     baked_west.addToList(quads, side);
-    baked_east_top.addToList(quads, side);
     baked_west_top.addToList(quads, side);
+  }
+
+  private Cube makePostCube(VertexFormat format, double x, double y, double z, double w, double h, double l, Vec4f[] uv, TextureAtlasSprite[] sprites, int tintIndex) {
+    uv = new Vec4f[]{new Vec4f((float)z * 16.0F, (float)(-y) * 16.0F + (16.0F - (float)h * 16.0F), (float)l * 16.0F, (float)h * 16.0F), new Vec4f(16.0F - (float)l * 16.0F - (float)z * 16.0F, (float)(-y) * 16.0F + (16.0F - (float)h * 16.0F), (float)l * 16.0F, (float)h * 16.0F), new Vec4f(5f, 5f, 6f, 6f), new Vec4f(5f, 5f, 6f, 6f), new Vec4f(16.0F - (float)w * 16.0F - (float)x * 16.0F, (float)(-y) * 16.0F + (16.0F - (float)h * 16.0F), (float)w * 16.0F, (float)h * 16.0F), new Vec4f((float)x * 16.0F, (float)(-y) * 16.0F + (16.0F - (float)h * 16.0F), (float)w * 16.0F, (float)h * 16.0F)};
+    return ModelUtil.makeCube(format, x, y, z, w, h, l, uv, sprites, tintIndex);
   }
 
 }
