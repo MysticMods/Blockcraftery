@@ -2,6 +2,7 @@ package epicsquid.blockcraftery;
 
 import epicsquid.blockcraftery.block.BlockEditableCorner;
 import epicsquid.blockcraftery.block.BlockEditableCube;
+import epicsquid.blockcraftery.block.BlockEditableFence;
 import epicsquid.blockcraftery.block.BlockEditableSlab;
 import epicsquid.blockcraftery.block.BlockEditableSlant;
 import epicsquid.blockcraftery.block.BlockEditableStairs;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RegistryManager {
   private static int entityId = 0;
 
-  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner, editable_wall;
+  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner, editable_wall, editable_fence;
 
   @SubscribeEvent
   public void registerContent(RegisterContentEvent event) {
@@ -52,6 +53,8 @@ public class RegistryManager {
             .setCreativeTab(Blockcraftery.tab));
     editable_wall = event
         .addBlock(new BlockEditableWall(editable_block, SoundType.WOOD, 1.0f, "editable_wall", TileEditableBlock.class).setCreativeTab(Blockcraftery.tab));
+    editable_fence = event
+        .addBlock(new BlockEditableFence(editable_block, SoundType.WOOD, 1.0f, "editable_fence", TileEditableBlock.class).setCreativeTab(Blockcraftery.tab));
   }
 
   @SideOnly(Side.CLIENT)
