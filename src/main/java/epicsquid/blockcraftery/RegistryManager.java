@@ -77,5 +77,6 @@ public class RegistryManager {
     RecipeRegistry
         .registerShapedMirrored(event.getRegistry(), "editable_inner_corner", new ItemStack(editable_inner_corner, 2), " S", "SS", 'S', editable_slant);
     RecipeRegistry.registerShapeless(event.getRegistry(), "editable_outer_corner", new ItemStack(editable_outer_corner, 2), editable_slant);
+    RecipeRegistry.registerShapedMirrored(event.getRegistry(), "editable_fence", new ItemStack(editable_fence, 6), "SWS", "SWS", 'S', editable_block, 'W', "stickWood");
   }
 }

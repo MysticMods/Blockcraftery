@@ -1,10 +1,11 @@
 package epicsquid.blockcraftery.block;
 
+import javax.annotation.Nonnull;
+
 import epicsquid.blockcraftery.model.BakedModelEditableCube;
 import epicsquid.blockcraftery.tile.TileEditableBlock;
 import epicsquid.mysticallib.block.BlockTEBase;
-import epicsquid.mysticallib.model.CustomModelBlock;
-import epicsquid.mysticallib.model.CustomModelLoader;
+import epicsquid.mysticallib.model.block.BakedModelBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -17,7 +18,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.ExtendedBlockState;
@@ -31,9 +31,9 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   public static final PropertyBool FULLCUBE = PropertyBool.create("fullcube");
   public static final PropertyBool OPAQUECUBE = PropertyBool.create("opaquecube");
 
-  public BlockEditableCube(Material mat, SoundType type, float hardness, String name, Class<? extends TileEntity> teClass) {
+  public BlockEditableCube(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name, @Nonnull Class<? extends TileEntity> teClass) {
     super(mat, type, hardness, name, teClass);
-    this.hasCustomModel = true;
+    setModelCustom(true);
     this.setLightOpacity(0);
     setOpacity(false);
     setDefaultState(blockState.getBaseState().withProperty(FULLCUBE, true).withProperty(OPAQUECUBE, false));
@@ -41,32 +41,33 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
 
   @SideOnly(Side.CLIENT)
   @Override
-  public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+  public boolean canRenderInLayer(@Nonnull IBlockState state, @Nonnull BlockRenderLayer layer) {
     return true;
   }
 
   @Override
-  public boolean isOpaqueCube(IBlockState state) {
+  public boolean isOpaqueCube(@Nonnull IBlockState state) {
     return state.getValue(OPAQUECUBE);
   }
 
   @Override
-  public boolean isFullCube(IBlockState state) {
+  public boolean isFullCube(@Nonnull IBlockState state) {
     return !state.getValue(FULLCUBE);
   }
 
   @Override
-  public boolean isLadder(IBlockState state, IBlockAccess world, BlockPos pos, EntityLivingBase entity) {
+  public boolean isLadder(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EntityLivingBase entity) {
     return true;
   }
 
   @Override
-  public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_) {
+  @Nonnull
+  public BlockFaceShape getBlockFaceShape(@Nonnull IBlockAccess blockAccess, @Nonnull IBlockState blockState, @Nonnull BlockPos pos, @Nonnull EnumFacing facing) {
     return BlockFaceShape.SOLID;
   }
 
   @Override
-  public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+  public boolean shouldSideBeRendered(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
     IBlockState s = world.getBlockState(pos.offset(side));
     if (s.getBlock() == this) {
       TileEntity t = world.getTileEntity(pos);
@@ -80,7 +81,7 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   }
 
   @Override
-  public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+  public boolean doesSideBlockRendering(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
     TileEntity t = world.getTileEntity(pos);
     if (t instanceof TileEditableBlock) {
       return ((TileEditableBlock) t).state.getBlock().doesSideBlockRendering(((TileEditableBlock) t).state, world, pos, side);
@@ -89,6 +90,7 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   }
 
   @Override
+  @Nonnull
   protected BlockStateContainer createBlockState() {
     IProperty[] listedProperties = new IProperty[] { FULLCUBE, OPAQUECUBE };
     IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { STATEPROP };
@@ -96,17 +98,19 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   }
 
   @Override
+  @Nonnull
   public IBlockState getStateFromMeta(int meta) {
     return getDefaultState().withProperty(FULLCUBE, meta % 2 == 1).withProperty(OPAQUECUBE, meta > 1);
   }
 
   @Override
-  public int getMetaFromState(IBlockState state) {
+  public int getMetaFromState(@Nonnull IBlockState state) {
     return 2 * (state.getValue(OPAQUECUBE) ? 1 : 0) + (state.getValue(FULLCUBE) ? 1 : 0);
   }
 
   @Override
-  public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
+  @Nonnull
+  public IBlockState getExtendedState(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
     TileEntity t = world.getTileEntity(pos);
     IBlockState actual = getActualState(state, world, pos);
     if (t instanceof TileEditableBlock && actual instanceof IExtendedBlockState) {
@@ -120,44 +124,40 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   public static final UnlistedPropertyState STATEPROP = new UnlistedPropertyState();
 
   public static class UnlistedPropertyState implements IUnlistedProperty<IBlockState> {
+
     @Override
+    @Nonnull
     public String getName() {
       return "stateprop";
     }
 
     @Override
-    public boolean isValid(IBlockState value) {
+    public boolean isValid(@Nonnull IBlockState value) {
       return true;
     }
 
     @Override
+    @Nonnull
     public Class<IBlockState> getType() {
       return IBlockState.class;
     }
 
     @Override
-    public String valueToString(IBlockState value) {
+    @Nonnull
+    public String valueToString(@Nonnull IBlockState value) {
       return value.toString();
     }
   }
 
   @Override
-  @SideOnly(Side.CLIENT)
-  public void initCustomModel() {
-    if (this.hasCustomModel) {
-      ResourceLocation defaultTex = new ResourceLocation(getRegistryName().getResourceDomain() + ":blocks/" + getRegistryName().getResourcePath());
-      CustomModelLoader.blockmodels.put(new ResourceLocation(getRegistryName().getResourceDomain() + ":models/block/" + name),
-          new CustomModelBlock(BakedModelEditableCube.class, defaultTex, defaultTex));
-      CustomModelLoader.itemmodels.put(new ResourceLocation(getRegistryName().getResourceDomain() + ":" + name + "#inventory"),
-          new CustomModelBlock(BakedModelEditableCube.class, defaultTex, defaultTex));
-    }
-  }
-
-  @Override
+  @Nonnull
   public IUnlistedProperty<IBlockState> getStateProperty() {
     return STATEPROP;
   }
 
-
-
+  @Nonnull
+  @Override
+  protected Class<? extends BakedModelBlock> getModelClass() {
+    return BakedModelEditableCube.class;
+  }
 }

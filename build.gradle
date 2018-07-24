@@ -31,7 +31,11 @@ minecraft {
 }
 
 dependencies {
-    compile files('libs/')
+    if (!project.hasProperty("dev_env")) {
+        compile files('libs/')
+    } else {
+        compile project(':MysticalLib')
+    }
 }
 
 processResources {
