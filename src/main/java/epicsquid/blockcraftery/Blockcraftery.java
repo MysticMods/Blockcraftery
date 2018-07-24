@@ -22,7 +22,8 @@ public class Blockcraftery {
   public static final String VERSION = "@VERSION@";
   public static final String MODNAME = "Blockcraftery";
 
-  @SidedProxy(clientSide = "epicsquid.blockcraftery.proxy.ClientProxy", serverSide = "epicsquid.blockcraftery.proxy.CommonProxy") public static CommonProxy proxy;
+  @SidedProxy(clientSide = "epicsquid.blockcraftery.proxy.ClientProxy", serverSide = "epicsquid.blockcraftery.proxy.CommonProxy")
+  public static CommonProxy proxy;
 
   @Instance public static Blockcraftery INSTANCE;
 
