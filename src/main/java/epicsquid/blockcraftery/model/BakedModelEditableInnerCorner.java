@@ -72,28 +72,28 @@ public class BakedModelEditableInnerCorner extends BakedModelEditable {
         .makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, false, true, true, true }, texes,
             tintIndex);
     segm_up_nxnz_1 = ModelUtil
-        .makeSegm(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, true, false }, texes,
+        .makeSegmUp(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, true, false }, texes,
             tintIndex);
     segm_up_nxnz_2 = ModelUtil
-        .makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, true, false, true, true }, texes,
+        .makeSegmUp(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, true, false, true, true }, texes,
             tintIndex);
     segm_up_pxnz_1 = ModelUtil
-        .makeSegm(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, true, false }, texes,
+        .makeSegmUp(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, true, false }, texes,
             tintIndex);
     segm_up_pxnz_2 = ModelUtil
-        .makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, false, true, false, true, true }, texes,
+        .makeSegmUp(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, false, true, false, true, true }, texes,
             tintIndex);
     segm_up_pxpz_1 = ModelUtil
-        .makeSegm(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, false, true }, texes,
+        .makeSegmUp(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, false, true }, texes,
             tintIndex);
     segm_up_pxpz_2 = ModelUtil
-        .makeSegm(format, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, false, true, false, true, true }, texes,
+        .makeSegmUp(format, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, false, true, false, true, true }, texes,
             tintIndex);
     segm_up_nxpz_1 = ModelUtil
-        .makeSegm(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, false, true }, texes,
+        .makeSegmUp(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, false, true }, texes,
             -1);
     segm_up_nxpz_2 = ModelUtil
-        .makeSegm(format, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, true, false, true, true }, texes,
+        .makeSegmUp(format, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, true, false, true, true }, texes,
             tintIndex);
     boolean up = state.getValue(BlockCornerBase.UP);
     int dir = state.getValue(BlockCornerBase.DIR);
