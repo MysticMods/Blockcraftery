@@ -71,6 +71,9 @@ public class BakedModelEditableInnerCorner extends BakedModelEditable {
     segm_down_nxpz_2 = ModelUtil
         .makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, new boolean[] { false, true, false, true, true, true }, texes,
             tintIndex);
+    // Use makeSegmUp on these since it is a special version of the makeSegm method where every face except the downward one has its first and second coord
+    // switched with its third and fourth.
+    // For some reason faces are rendered black on custom baked models if the coords have a "wrong drawing order" on newer Forge versions.
     segm_up_nxnz_1 = ModelUtil
         .makeSegmUp(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, new boolean[] { true, true, true, true, true, false }, texes,
             tintIndex);
