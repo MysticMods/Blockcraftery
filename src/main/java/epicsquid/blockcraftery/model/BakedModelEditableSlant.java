@@ -47,13 +47,16 @@ public class BakedModelEditableSlant extends BakedModelEditable {
     segm_down_south = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, texes, tintIndex);
     segm_down_west = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, texes, tintIndex);
     segm_down_east = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, texes, tintIndex);
-    segm_up_north = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_south = ModelUtil.makeSegm(format, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_west = ModelUtil.makeSegm(format, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_east = ModelUtil.makeSegm(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_mid_nxnz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, texes, tintIndex);
-    segm_mid_pxnz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_mid_pxpz = ModelUtil.makeSegm(format, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    segm_up_north = ModelUtil.makeSegm(format, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, texes, tintIndex);
+    segm_up_south = ModelUtil.makeSegm(format, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, texes, tintIndex);
+    segm_up_west = ModelUtil.makeSegm(format, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, texes, tintIndex);
+    segm_up_east = ModelUtil.makeSegm(format, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, texes, tintIndex);
+    // Use makeSegmUp on these since it is a special version of the makeSegm method where every face except the downward one has its first and second coord
+    // switched with its third and fourth.
+    // For some reason faces are rendered black on custom baked models if the coords have a "wrong drawing order" on newer Forge versions.
+    segm_mid_nxnz = ModelUtil.makeSegmUp(format, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, texes, tintIndex);
+    segm_mid_pxnz = ModelUtil.makeSegmUp(format, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    segm_mid_pxpz = ModelUtil.makeSegm(format, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, texes, tintIndex);
     segm_mid_nxpz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, texes, tintIndex);
     int vert = state.getValue(BlockSlantBase.VERT);
     int dir = state.getValue(BlockSlantBase.DIR);

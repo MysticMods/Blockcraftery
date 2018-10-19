@@ -46,10 +46,13 @@ public class BakedModelEditableOuterCorner extends BakedModelEditable {
     segm_down_pxnz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, texes, tintIndex);
     segm_down_pxpz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, texes, tintIndex);
     segm_down_nxpz = ModelUtil.makeSegm(format, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_nxnz = ModelUtil.makeSegm(format, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_pxnz = ModelUtil.makeSegm(format, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_pxpz = ModelUtil.makeSegm(format, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
-    segm_up_nxpz = ModelUtil.makeSegm(format, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    // Use makeSegmUp on these since it is a special version of the makeSegm method where every face except the downward one has its first and second coord
+    // switched with its third and fourth.
+    // For some reason faces are rendered black on custom baked models if the coords have a "wrong drawing order" on newer Forge versions.
+    segm_up_nxnz = ModelUtil.makeSegmUp(format, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    segm_up_pxnz = ModelUtil.makeSegmUp(format, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    segm_up_pxpz = ModelUtil.makeSegmUp(format, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
+    segm_up_nxpz = ModelUtil.makeSegmUp(format, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, texes, tintIndex);
     boolean up = state.getValue(BlockCornerBase.UP);
     int dir = state.getValue(BlockCornerBase.DIR);
     if (!up) {
