@@ -17,11 +17,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = Blockcraftery.MODID, version = Blockcraftery.VERSION, name = Blockcraftery.MODNAME, dependencies = "required-after:mysticallib@[" + MysticalLib.VERSION + ",)")
+@Mod(modid = Blockcraftery.MODID, version = Blockcraftery.VERSION, name = Blockcraftery.MODNAME, dependencies = Blockcraftery.DEPENDENCIES)
 public class Blockcraftery {
   public static final String MODID = "blockcraftery";
   public static final String VERSION = "@VERSION@";
   public static final String MODNAME = "Blockcraftery";
+  public static final String DEPENDENCIES = "required-before:mysticallib@[" + MysticalLib.VERSION + ",)";
 
   @SidedProxy(clientSide = "epicsquid.blockcraftery.proxy.ClientProxy", serverSide = "epicsquid.blockcraftery.proxy.CommonProxy")
   public static CommonProxy proxy;
