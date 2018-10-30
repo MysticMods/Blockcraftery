@@ -1,7 +1,6 @@
 package epicsquid.blockcraftery;
 
 import epicsquid.blockcraftery.proxy.CommonProxy;
-import epicsquid.mysticallib.MysticalLib;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +21,7 @@ public class Blockcraftery {
   public static final String MODID = "blockcraftery";
   public static final String VERSION = "@VERSION@";
   public static final String MODNAME = "Blockcraftery";
-  public static final String DEPENDENCIES = "required-before:mysticallib@[" + MysticalLib.VERSION + ",)";
+  public static final String DEPENDENCIES = "required-before:mysticallib";
 
   @SidedProxy(clientSide = "epicsquid.blockcraftery.proxy.ClientProxy", serverSide = "epicsquid.blockcraftery.proxy.CommonProxy")
   public static CommonProxy proxy;
