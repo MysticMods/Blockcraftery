@@ -1,6 +1,7 @@
 package epicsquid.blockcraftery;
 
 import epicsquid.blockcraftery.proxy.CommonProxy;
+import epicsquid.mysticallib.MysticalLib;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(modid = Blockcraftery.MODID, version = Blockcraftery.VERSION, name = Blockcraftery.MODNAME, dependencies = "required-before:mysticallib")
+@Mod(modid = Blockcraftery.MODID, version = Blockcraftery.VERSION, name = Blockcraftery.MODNAME, dependencies = "required-after:mysticallib@[" + MysticalLib.VERSION + ",)")
 public class Blockcraftery {
   public static final String MODID = "blockcraftery";
   public static final String VERSION = "@VERSION@";
