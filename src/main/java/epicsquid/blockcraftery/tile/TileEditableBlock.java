@@ -13,11 +13,13 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -56,6 +58,7 @@ public class TileEditableBlock extends TileBase {
             world.setBlockState(pos, state.withProperty(BlockEditableCube.OPAQUECUBE, newState.isOpaqueCube()).withProperty(BlockEditableCube.FULLCUBE, !newState.isFullCube()));
           }
           world.notifyBlockUpdate(pos, state, newState, 8);
+          world.playSound(player, pos, SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1f, 1f);
           return true;
         }
       }
@@ -68,6 +71,8 @@ public class TileEditableBlock extends TileBase {
         }
       }
       hasGlowstone = true;
+      world.playSound(player, pos, SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1f, 1f);
+      return true;
     } else if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
       if (!world.isRemote && !player.capabilities.isCreativeMode && !ConfigManager.freeDecoration) {
         world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack));
@@ -79,6 +84,7 @@ public class TileEditableBlock extends TileBase {
         world.setBlockState(pos, state.withProperty(BlockEditableCube.OPAQUECUBE, this.state.isOpaqueCube()).withProperty(BlockEditableCube.FULLCUBE, !this.state.isFullCube()));
       }
       world.notifyBlockUpdate(pos, state, state, 8);
+      world.playSound(player, pos, SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1f, 1f);
       return true;
     }
     return false;
