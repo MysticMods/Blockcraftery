@@ -23,6 +23,8 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static epicsquid.blockcraftery.block.BlockEditableCube.LIGHT;
+
 public class BlockEditableCorner extends BlockTECornerBase implements IEditableBlock {
 
   public BlockEditableCorner(@Nonnull IBlockState state, @Nonnull SoundType type, float hardness, @Nonnull String name, boolean inner,
@@ -31,6 +33,20 @@ public class BlockEditableCorner extends BlockTECornerBase implements IEditableB
     setModelCustom(true);
     setLightOpacity(0);
     setOpacity(false);
+    setDefaultState(blockState.getBaseState().withProperty(LIGHT, false));
+  }
+
+  @Override
+  public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+    if (getParentState() != null) {
+      return super.getLightOpacity(state, world, pos);
+    }
+    return super.getLightOpacity(state, world, pos);
+  }
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+    return state.getValue(LIGHT) ? 15 : 0;
   }
 
   @SideOnly(Side.CLIENT)
@@ -42,7 +58,7 @@ public class BlockEditableCorner extends BlockTECornerBase implements IEditableB
   @Override
   @Nonnull
   public BlockStateContainer createBlockState() {
-    IProperty[] listedProperties = new IProperty[] { BlockCornerBase.INNER, BlockCornerBase.UP, BlockCornerBase.DIR };
+    IProperty[] listedProperties = new IProperty[] { BlockCornerBase.INNER, BlockCornerBase.UP, BlockCornerBase.DIR, LIGHT };
     IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { STATEPROP };
     return new ExtendedBlockState(this, listedProperties, unlistedProperties);
   }

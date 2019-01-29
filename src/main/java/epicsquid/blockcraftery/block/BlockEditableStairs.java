@@ -22,6 +22,8 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static epicsquid.blockcraftery.block.BlockEditableCube.LIGHT;
+
 public class BlockEditableStairs extends BlockTEStairsBase implements IEditableBlock {
 
   public BlockEditableStairs(@Nonnull IBlockState state, @Nonnull SoundType type, float hardness, @Nonnull String name,
@@ -30,6 +32,20 @@ public class BlockEditableStairs extends BlockTEStairsBase implements IEditableB
     setModelCustom(true);
     setLightOpacity(0);
     setOpacity(false);
+    setDefaultState(blockState.getBaseState().withProperty(LIGHT, false));
+  }
+
+  @Override
+  public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+    if (getParent() != null) {
+      return super.getLightOpacity(state, world, pos);
+    }
+    return super.getLightOpacity(state, world, pos);
+  }
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+    return state.getValue(LIGHT) ? 15 : 0;
   }
 
   @SideOnly(Side.CLIENT)
@@ -41,7 +57,7 @@ public class BlockEditableStairs extends BlockTEStairsBase implements IEditableB
   @Override
   @Nonnull
   protected BlockStateContainer createBlockState() {
-    IProperty[] listedProperties = new IProperty[] { BlockStairs.FACING, BlockStairs.HALF, BlockStairs.SHAPE };
+    IProperty[] listedProperties = new IProperty[] { BlockStairs.FACING, BlockStairs.HALF, BlockStairs.SHAPE, LIGHT };
     IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { STATEPROP };
     return new ExtendedBlockState(this, listedProperties, unlistedProperties);
   }

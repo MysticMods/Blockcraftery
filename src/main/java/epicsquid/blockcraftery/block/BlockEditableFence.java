@@ -22,6 +22,8 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import static epicsquid.blockcraftery.block.BlockEditableCube.LIGHT;
+
 public class BlockEditableFence extends BlockTEFenceBase implements IEditableBlock {
 
   public BlockEditableFence(@Nonnull Block block, @Nonnull SoundType type, float hardness, @Nonnull String name, @Nonnull Class<? extends TileEntity> teClass) {
@@ -29,6 +31,20 @@ public class BlockEditableFence extends BlockTEFenceBase implements IEditableBlo
     setModelCustom(true);
     setLightOpacity(0);
     setOpacity(false);
+    setDefaultState(blockState.getBaseState().withProperty(LIGHT, false));
+  }
+
+  @Override
+  public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+    if (getParent().getDefaultState() != null) {
+      return super.getLightOpacity(getParent().getDefaultState(), world, pos);
+    }
+    return super.getLightOpacity(state, world, pos);
+  }
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+    return state.getValue(LIGHT) ? 15 : 0;
   }
 
   @SideOnly(Side.CLIENT)
@@ -40,7 +56,7 @@ public class BlockEditableFence extends BlockTEFenceBase implements IEditableBlo
   @Override
   @Nonnull
   protected BlockStateContainer createBlockState() {
-    IProperty[] listedProperties = new IProperty[] { NORTH, SOUTH, WEST, EAST };
+    IProperty[] listedProperties = new IProperty[] { NORTH, SOUTH, WEST, EAST, LIGHT };
     IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { STATEPROP };
     return new ExtendedBlockState(this, listedProperties, unlistedProperties);
   }
