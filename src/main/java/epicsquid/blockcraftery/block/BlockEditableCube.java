@@ -30,13 +30,14 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
 
   public static final PropertyBool FULLCUBE = PropertyBool.create("fullcube");
   public static final PropertyBool OPAQUECUBE = PropertyBool.create("opaquecube");
+  public static final PropertyBool LIGHT = PropertyBool.create("light");
 
   public BlockEditableCube(@Nonnull Material mat, @Nonnull SoundType type, float hardness, @Nonnull String name, @Nonnull Class<? extends TileEntity> teClass) {
     super(mat, type, hardness, name, teClass);
     setModelCustom(true);
     this.setLightOpacity(0);
     setOpacity(false);
-    setDefaultState(blockState.getBaseState().withProperty(FULLCUBE, true).withProperty(OPAQUECUBE, false));
+    setDefaultState(blockState.getBaseState().withProperty(FULLCUBE, true).withProperty(OPAQUECUBE, false).withProperty(LIGHT, false));
   }
 
   @SideOnly(Side.CLIENT)
@@ -53,6 +54,11 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   @Override
   public boolean isFullCube(@Nonnull IBlockState state) {
     return !state.getValue(FULLCUBE);
+  }
+
+  @Override
+  public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
+    return state.getValue(LIGHT) ? 15 : 0;
   }
 
   @Override
@@ -92,7 +98,7 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   @Override
   @Nonnull
   protected BlockStateContainer createBlockState() {
-    IProperty[] listedProperties = new IProperty[] { FULLCUBE, OPAQUECUBE };
+    IProperty[] listedProperties = new IProperty[] { FULLCUBE, OPAQUECUBE, LIGHT };
     IUnlistedProperty[] unlistedProperties = new IUnlistedProperty[] { STATEPROP };
     return new ExtendedBlockState(this, listedProperties, unlistedProperties);
   }
@@ -119,6 +125,14 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
       return ((IExtendedBlockState) actual).withProperty(STATEPROP, placeState);
     }
     return state;
+  }
+
+  @Override
+  public int getLightOpacity(IBlockState state, IBlockAccess world, BlockPos pos) {
+    if (getParentState() != null) {
+      return super.getLightOpacity(getParentState(), world, pos);
+    }
+    return super.getLightOpacity(state, world, pos);
   }
 
   public static final UnlistedPropertyState STATEPROP = new UnlistedPropertyState();
