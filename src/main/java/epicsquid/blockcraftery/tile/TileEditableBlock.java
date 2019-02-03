@@ -1,6 +1,7 @@
 package epicsquid.blockcraftery.tile;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import epicsquid.blockcraftery.ConfigManager;
 import epicsquid.blockcraftery.block.BlockEditableCube;
@@ -91,9 +92,9 @@ public class TileEditableBlock extends TileBase {
   }
 
   @Override
-  public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull EntityPlayer player) {
+  public void breakBlock(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nullable EntityPlayer player) {
     super.breakBlock(world, pos, state, player);
-    if (!world.isRemote && !player.capabilities.isCreativeMode) {
+    if (!world.isRemote && (player == null || !player.capabilities.isCreativeMode)) {
       world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack));
       if (hasGlowstone) {
         world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(Items.GLOWSTONE_DUST)));
