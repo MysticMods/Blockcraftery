@@ -81,8 +81,8 @@ public class RegistryManager {
     RecipeRegistry.registerShapeless(event.getRegistry(), "editable_outer_corner", new ItemStack(editable_outer_corner, 2), editable_slant);
     RecipeRegistry.registerShapedMirrored(event.getRegistry(), "editable_fence", new ItemStack(editable_fence, 6), "SWS", "SWS", 'S', editable_block, 'W', "stickWood");
 
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_block_reinforced", new ItemStack(editable_block_reinforced, 2), "SWS", " W ", "SWS", 'S', "stickWood", 'W', "nuggetIron");
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_block_reinforced_upgrade", new ItemStack(editable_block_reinforced, 1), " W ", "WSW", " S ", 'S', editable_block, 'W', "nuggetIron");
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_block_reinforced", new ItemStack(editable_block_reinforced, 3), "SWS", " W ", "SWS", 'S', "stickWood", 'W', "nuggetIron");
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_block_reinforced_upgrade", new ItemStack(editable_block_reinforced, 3), " W ", "WSW", " S ", 'S', editable_block, 'W', "nuggetIron");
     RecipeRegistry.registerShaped(event.getRegistry(), "editable_slab_reinforced", new ItemStack(editable_slab_reinforced, 3), "SSS", 'S', editable_block_reinforced);
     RecipeRegistry.registerShapedMirrored(event.getRegistry(), "editable_stairs_reinforced", new ItemStack(editable_stairs_reinforced, 4), "  S", " SS", "SSS", 'S', editable_block_reinforced);
     RecipeRegistry.registerShapedMirrored(event.getRegistry(), "editable_wall_reinforced", new ItemStack(editable_wall_reinforced, 6), "SSS", "SSS", 'S', editable_block_reinforced);
