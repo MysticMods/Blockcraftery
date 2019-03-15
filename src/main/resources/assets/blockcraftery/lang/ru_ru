@@ -1,0 +1,10 @@
+itemGroup.blockcraftery=Blockcraftery
+
+tile.editable_block.name=Блок плотника
+tile.editable_slab.name=Плита плотника
+tile.editable_stairs.name=Ступеньки плотника
+tile.editable_slant.name=Склон плотника
+tile.editable_inner_corner.name=Внутренний угол плотника
+tile.editable_outer_corner.name=Внешний угол плотника
+tile.editable_wall.name=Ограда плотника
+tile.editable_fence.name=Забор плотника
