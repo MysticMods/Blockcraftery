@@ -106,12 +106,12 @@ public class BlockEditableCube extends BlockTEBase implements IEditableBlock {
   @Override
   @Nonnull
   public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty(FULLCUBE, meta % 2 == 1).withProperty(OPAQUECUBE, meta > 1);
+    return getDefaultState().withProperty(LIGHT, meta << 2 == 1).withProperty(OPAQUECUBE, meta << 1 == 1).withProperty(LIGHT, meta == 1);
   }
 
   @Override
   public int getMetaFromState(@Nonnull IBlockState state) {
-    return 2 * (state.getValue(OPAQUECUBE) ? 1 : 0) + (state.getValue(FULLCUBE) ? 1 : 0);
+    return (state.getValue(LIGHT) ? 1 : 0) >> 2 + (state.getValue(OPAQUECUBE) ? 1 : 0) >> 1 + (state.getValue(FULLCUBE) ? 1 : 0);
   }
 
   @Override
