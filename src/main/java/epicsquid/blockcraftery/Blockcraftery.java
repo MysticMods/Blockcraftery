@@ -38,7 +38,7 @@ public class Blockcraftery {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public ItemStack getTabIconItem() {
+    public ItemStack createIcon() {
       return new ItemStack(RegistryManager.editable_block, 1);
     }
   };

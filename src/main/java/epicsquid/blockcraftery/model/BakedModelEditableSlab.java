@@ -85,7 +85,7 @@ public class BakedModelEditableSlab extends BakedModelEditable {
       ModelUtil.makeCube(format, 0, 0.5, 0, 1, 0.5, 1, null, texes, new Function<Vec3d, Vec3d>() {
         @Override
         public Vec3d apply(Vec3d arg0) {
-          return arg0.addVector(0, -0.5, 0);
+          return arg0.add(0, -0.5, 0);
         }
       }, tintIndex).addToList(quads, side);
     } else if (half == EnumBlockHalf.TOP) {

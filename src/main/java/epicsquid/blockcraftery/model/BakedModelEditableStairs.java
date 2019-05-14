@@ -63,7 +63,7 @@ public class BakedModelEditableStairs extends BakedModelEditable {
     cube_down = ModelUtil.makeCube(format, 0, 0.5, 0, 1, 0.5, 1, null, texes, new Function<Vec3d, Vec3d>() {
       @Override
       public Vec3d apply(Vec3d arg0) {
-        return arg0.addVector(0, -0.5, 0);
+        return arg0.add(0, -0.5, 0);
       }
     }, tintIndex);
     cube_up = ModelUtil.makeCube(format, 0, 0.5, 0, 1, 0.5, 1, null, texes, tintIndex);
@@ -83,12 +83,7 @@ public class BakedModelEditableStairs extends BakedModelEditable {
     e_down_pxnz = ModelUtil.makeCube(format, 0.5, 0, 0, 0.5, 0.5, 0.5, null, texes, tintIndex);
     e_down_pxpz = ModelUtil.makeCube(format, 0.5, 0, 0.5, 0.5, 0.5, 0.5, null, texes, tintIndex);
     e_down_nxpz = ModelUtil.makeCube(format, 0, 0, 0.5, 0.5, 0.5, 0.5, null, texes, tintIndex);
-    Function<Vec3d, Vec3d> down = new Function<Vec3d, Vec3d>() {
-      @Override
-      public Vec3d apply(Vec3d t) {
-        return t.addVector(0, -0.5, 0);
-      }
-    };
+    Function<Vec3d, Vec3d> down = t -> t.add(0, -0.5, 0);
     c_down_nxnz = ModelUtil.makeCube(format, 0, 0.5, 0, 0.5, 0.5, 0.5, null, texes, down, tintIndex);
     c_down_pxnz = ModelUtil.makeCube(format, 0.5, 0.5, 0, 0.5, 0.5, 0.5, null, texes, down, tintIndex);
     c_down_pxpz = ModelUtil.makeCube(format, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, null, texes, down, tintIndex);

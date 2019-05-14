@@ -76,7 +76,7 @@ public abstract class BakedModelEditable extends BakedModelBlock {
           usingDefault = false;
         }
         if (usingDefault && MinecraftForgeClient.getRenderLayer() == BlockRenderLayer.CUTOUT_MIPPED
-            || !usingDefault && MinecraftForgeClient.getRenderLayer() == texState.getBlock().getBlockLayer()) {
+            || !usingDefault && MinecraftForgeClient.getRenderLayer() == texState.getBlock().getRenderLayer()) {
           for (int i = 0; i < sprites.length; i++) {
             addGeometry(quads, side, state, new TextureAtlasSprite[] { sprites[i], sprites[i], sprites[i], sprites[i], sprites[i], sprites[i] },
                 tintIndices[i]);
