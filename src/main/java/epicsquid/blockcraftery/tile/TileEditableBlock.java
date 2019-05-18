@@ -38,7 +38,7 @@ public class TileEditableBlock extends TileBase {
       Block b = Block.getBlockFromItem(player.getHeldItemMainhand().getItem());
       if (b != null && !(b instanceof IEditableBlock) && b != Blocks.AIR) {
         IBlockState newState = b.getStateForPlacement(world, pos, side, hitX, hitY, hitZ, player.getHeldItemMainhand().getMetadata(), player);
-        if (newState != this.state && newState.isFullCube() || b instanceof BlockBreakable) {
+        if (newState != this.state) {
           this.state = newState;
           markDirty();
           if (!player.capabilities.isCreativeMode && !ConfigManager.freeDecoration) {
