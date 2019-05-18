@@ -54,7 +54,7 @@ public class RegistryManager {
         .setFlammable(false).setCreativeTab(Blockcraftery.tab));
     editable_double_slab_reinforced_temp.slab = editable_slab_reinforced_temp;
     editable_slab_reinforced = event.addBlock(editable_slab_reinforced_temp.setCreativeTab(Blockcraftery.tab));
-    editable_double_slab_reinforced = event.addBlock(editable_double_slab_temp.setCreativeTab(Blockcraftery.tab));
+    editable_double_slab_reinforced = event.addBlock(editable_double_slab_reinforced_temp.setCreativeTab(Blockcraftery.tab));
     editable_slant_reinforced = event.addBlock(new BlockEditableSlant(editable_block_reinforced.getDefaultState(), SoundType.WOOD, 1.0f, "editable_slant_reinforced", TileEditableBlock.class).setResistance(6000f).setFlammable(false).setCreativeTab(Blockcraftery.tab));
     editable_outer_corner_reinforced = event.addBlock(new BlockEditableCorner(editable_block_reinforced.getDefaultState(), SoundType.WOOD, 1.0f, "editable_outer_corner_reinforced", false, TileEditableBlock.class).setResistance(60000f).setFlammable(false).setCreativeTab(Blockcraftery.tab));
     editable_inner_corner_reinforced = event.addBlock(new BlockEditableCorner(editable_block_reinforced.getDefaultState(), SoundType.WOOD, 1.0f, "editable_inner_corner_reinforced", true, TileEditableBlock.class).setResistance(60000f).setFlammable(false).setCreativeTab(Blockcraftery.tab));
