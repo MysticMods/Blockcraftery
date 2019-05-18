@@ -112,11 +112,6 @@ public class BlockEditableWall extends BlockTEWallBase implements IEditableBlock
   }
 
   @Override
-  public boolean shouldSideBeRendered(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
-    return true;
-  }
-
-  @Override
   public boolean doesSideBlockRendering(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
     return false;
   }
