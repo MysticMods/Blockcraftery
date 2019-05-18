@@ -49,15 +49,15 @@ public class BakedModelEditableFence extends BakedModelEditable {
     boolean cwest = state.getValue(BlockWall.WEST);
     boolean ceast = state.getValue(BlockWall.EAST);
     post = makePostCube(format, 0.375, 0, 0.375, 0.25, 1, 0.25, null, texes, tintIndex);
-    north = ModelUtil.makeCube(format, 0.4375, 0.375, 0, 0.125, 0.1875, 0.5, null, texes, tintIndex);
-    south = ModelUtil.makeCube(format, 0.4375, 0.375, 0.5, 0.125, 0.1875, 0.5, null, texes, tintIndex);
-    west = ModelUtil.makeCube(format, 0, 0.375, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
-    east = ModelUtil.makeCube(format, 0.5, 0.375, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
+    north = ModelUtil.makeCube(format, 0.4375, 0.375, 0, 0.125, 0.1875, 0.375, null, texes, tintIndex);
+    south = ModelUtil.makeCube(format, 0.4375, 0.375, 0.625, 0.125, 0.1875, 0.375, null, texes, tintIndex);
+    west = ModelUtil.makeCube(format, 0, 0.375, 0.4375, 0.375, 0.1875, 0.125, null, texes, tintIndex);
+    east = ModelUtil.makeCube(format, 0.625, 0.375, 0.4375, 0.375, 0.1875, 0.125, null, texes, tintIndex);
 
-    north_top = ModelUtil.makeCube(format, 0.4375, 0.75, 0, 0.125, 0.1875, 0.5, null, texes, tintIndex);
-    south_top = ModelUtil.makeCube(format, 0.4375, 0.75, 0.5, 0.125, 0.1875, 0.5, null, texes, tintIndex);
-    west_top = ModelUtil.makeCube(format, 0, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
-    east_top = ModelUtil.makeCube(format, 0.5, 0.75, 0.4375, 0.5, 0.1875, 0.125, null, texes, tintIndex);
+    north_top = ModelUtil.makeCube(format, 0.4375, 0.75, 0, 0.125, 0.1875, 0.375, null, texes, tintIndex);
+    south_top = ModelUtil.makeCube(format, 0.4375, 0.75, 0.625, 0.125, 0.1875, 0.375, null, texes, tintIndex);
+    west_top = ModelUtil.makeCube(format, 0, 0.75, 0.4375, 0.375, 0.1875, 0.125, null, texes, tintIndex);
+    east_top = ModelUtil.makeCube(format, 0.625, 0.75, 0.4375, 0.375, 0.1875, 0.125, null, texes, tintIndex);
     post.addToList(quads, side);
     if (cnorth) {
       north.addToList(quads, side);
