@@ -84,7 +84,7 @@ public abstract class BakedModelEditable extends BakedModelBlock {
         }
         data.put(dataId, quads);
         finalquads.addAll(quads);
-      } else {
+      } else if (!dataId.equals("null")) {
         finalquads.addAll(data.get(dataId));
       }
     }
