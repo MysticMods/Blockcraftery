@@ -9,6 +9,7 @@ tile.editable_outer_corner.name=Framed Outer Corner
 tile.editable_wall.name=Framed Wall
 tile.editable_fence.name=Framed Fence
 tile.editable_trap_door.name=Framed Trapdoor
+tile.editable_door.name=Framed Door
 
 tile.editable_block_reinforced.name=Reinforced Framed Block
 tile.editable_slab_reinforced.name=Reinforced Framed Slab
@@ -19,3 +20,4 @@ tile.editable_outer_corner_reinforced.name=Reinforced Framed Outer Corner
 tile.editable_wall_reinforced.name=Reinforced Framed Wall
 tile.editable_fence_reinforced.name=Reinforced Framed Fence
 tile.editable_trap_door_reinforced.name=Reinforced Framed Trapdoor
+tile.editable_door_reinforced.name=Reinforced Framed Door

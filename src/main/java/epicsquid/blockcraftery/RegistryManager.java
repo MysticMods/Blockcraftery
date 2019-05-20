@@ -2,6 +2,7 @@ package epicsquid.blockcraftery;
 
 import epicsquid.blockcraftery.block.BlockEditableCorner;
 import epicsquid.blockcraftery.block.BlockEditableCube;
+import epicsquid.blockcraftery.block.BlockEditableDoor;
 import epicsquid.blockcraftery.block.BlockEditableFence;
 import epicsquid.blockcraftery.block.BlockEditableSlab;
 import epicsquid.blockcraftery.block.BlockEditableSlant;
@@ -11,6 +12,7 @@ import epicsquid.blockcraftery.block.BlockEditableWall;
 import epicsquid.blockcraftery.block.EditableBlockColors;
 import epicsquid.blockcraftery.tile.TileEditableBlock;
 import epicsquid.mysticallib.LibRegistry;
+import epicsquid.mysticallib.block.BlockDoorBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.block.BlockTrapDoorBase;
 import epicsquid.mysticallib.event.RegisterColorHandlersEvent;
@@ -18,6 +20,7 @@ import epicsquid.mysticallib.event.RegisterContentEvent;
 import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticallib.recipe.RecipeRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -31,7 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RegistryManager {
   private static int entityId = 0;
 
-  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner, editable_wall, editable_fence, editable_block_reinforced, editable_stairs_reinforced, editable_slab_reinforced, editable_double_slab_reinforced, editable_slant_reinforced, editable_outer_corner_reinforced, editable_inner_corner_reinforced, editable_wall_reinforced, editable_fence_reinforced, editable_trap_door, editable_trap_door_reinforced;
+  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner, editable_wall, editable_fence, editable_block_reinforced, editable_stairs_reinforced, editable_slab_reinforced, editable_double_slab_reinforced, editable_slant_reinforced, editable_outer_corner_reinforced, editable_inner_corner_reinforced, editable_wall_reinforced, editable_fence_reinforced, editable_trap_door, editable_trap_door_reinforced, editable_door, editable_door_reinforced;
 
   @SubscribeEvent
   public void registerContent(RegisterContentEvent event) {
@@ -67,6 +70,9 @@ public class RegistryManager {
 
     editable_trap_door = event.addBlock(new BlockEditableTrapDoor(editable_block, SoundType.WOOD, 1.0f, "editable_trap_door", TileEditableBlock.class).setResistance(0f).setFlammable(true).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
     editable_trap_door_reinforced = event.addBlock(new BlockEditableTrapDoor(editable_block_reinforced, SoundType.WOOD, 1.0f, "editable_trap_door_reinforced", TileEditableBlock.class).setResistance(6000f).setFlammable(false).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
+
+    editable_door = event.addBlock(new BlockEditableDoor(editable_block, SoundType.WOOD, 1.0f, "editable_door", TileEditableBlock.class).setResistance(0f).setFlammable(true).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
+    editable_door_reinforced = event.addBlock(new BlockEditableDoor(editable_block_reinforced, SoundType.WOOD, 1.0f, "editable_door_reinforced", TileEditableBlock.class).setResistance(6000f).setFlammable(false).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
   }
 
   @SideOnly(Side.CLIENT)
@@ -98,7 +104,9 @@ public class RegistryManager {
     RecipeRegistry.registerShapeless(event.getRegistry(), "editable_outer_corner_reinforced", new ItemStack(editable_outer_corner_reinforced, 2), editable_slant_reinforced);
     RecipeRegistry.registerShapedMirrored(event.getRegistry(), "editable_fence_reinforced", new ItemStack(editable_fence_reinforced, 6), "SWS", "SWS", 'S', editable_block_reinforced, 'W', "stickWood");
 
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door", new ItemStack(editable_trap_door, 2), "WWW", "SSS", "SSS", 'S', editable_block, 'W', "stickWood");
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door_reinforced", new ItemStack(editable_trap_door_reinforced, 2), "WWW", "SSS", "SSS", 'S', editable_block_reinforced, 'W', "stickWood");
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door", new ItemStack(editable_trap_door, 2), "SS ", "SS ", 'S', editable_block);
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door_reinforced", new ItemStack(editable_trap_door_reinforced, 2),"SS ", "SS ", 'S', editable_block_reinforced);
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door", new ItemStack(editable_door, 3), "SS ", "SS ", "SS ", 'S', editable_block);
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door_reinforced", new ItemStack(editable_door_reinforced, 3),"SS ", "SS ", "SS ", 'S', editable_block_reinforced);
   }
 }
