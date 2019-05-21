@@ -21,3 +21,6 @@ tile.editable_wall_reinforced.name=Reinforced Framed Wall
 tile.editable_fence_reinforced.name=Reinforced Framed Fence
 tile.editable_trap_door_reinforced.name=Reinforced Framed Trapdoor
 tile.editable_door_reinforced.name=Reinforced Framed Door
+
+item.editable_door.name=Framed Door
+item.editable_door_reinforced.name=Reinforced Framed Door
