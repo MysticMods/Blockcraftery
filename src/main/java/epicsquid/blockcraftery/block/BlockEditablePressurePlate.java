@@ -29,9 +29,9 @@ import static epicsquid.blockcraftery.block.BlockEditableCube.LIGHT;
 
 public class BlockEditablePressurePlate extends BlockTEPressurePlateBase implements IEditableBlock {
 
-  public BlockEditablePressurePlate(@Nonnull Block block, BlockPressurePlate.Sensitivity sensitivity, @Nonnull SoundType type, float hardness, @Nonnull String name,
+  public BlockEditablePressurePlate(@Nonnull Block block, PressurePlateType plateType, @Nonnull SoundType type, float hardness, @Nonnull String name,
       @Nonnull Class<? extends TileEntity> teClass) {
-    super(block, sensitivity, type, hardness, name, teClass);
+    super(block, plateType, type, hardness, name, teClass);
     setModelCustom(true);
     setLightOpacity(0);
     setOpacity(false);
