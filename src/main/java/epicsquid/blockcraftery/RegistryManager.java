@@ -4,6 +4,7 @@ import epicsquid.blockcraftery.block.BlockEditableCorner;
 import epicsquid.blockcraftery.block.BlockEditableCube;
 import epicsquid.blockcraftery.block.BlockEditableDoor;
 import epicsquid.blockcraftery.block.BlockEditableFence;
+import epicsquid.blockcraftery.block.BlockEditablePressurePlate;
 import epicsquid.blockcraftery.block.BlockEditableSlab;
 import epicsquid.blockcraftery.block.BlockEditableSlant;
 import epicsquid.blockcraftery.block.BlockEditableStairs;
@@ -13,6 +14,7 @@ import epicsquid.blockcraftery.block.EditableBlockColors;
 import epicsquid.blockcraftery.tile.TileEditableBlock;
 import epicsquid.mysticallib.LibRegistry;
 import epicsquid.mysticallib.block.BlockDoorBase;
+import epicsquid.mysticallib.block.BlockPressurePlateBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.block.BlockTrapDoorBase;
 import epicsquid.mysticallib.event.RegisterColorHandlersEvent;
@@ -21,6 +23,7 @@ import epicsquid.mysticallib.event.RegisterModRecipesEvent;
 import epicsquid.mysticallib.recipe.RecipeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -34,7 +37,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RegistryManager {
   private static int entityId = 0;
 
-  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner, editable_wall, editable_fence, editable_block_reinforced, editable_stairs_reinforced, editable_slab_reinforced, editable_double_slab_reinforced, editable_slant_reinforced, editable_outer_corner_reinforced, editable_inner_corner_reinforced, editable_wall_reinforced, editable_fence_reinforced, editable_trap_door, editable_trap_door_reinforced, editable_door, editable_door_reinforced;
+  public static Block editable_block, editable_stairs, editable_slab, editable_double_slab, editable_slant, editable_outer_corner, editable_inner_corner,
+      editable_wall, editable_fence, editable_block_reinforced, editable_stairs_reinforced, editable_slab_reinforced, editable_double_slab_reinforced,
+      editable_slant_reinforced, editable_outer_corner_reinforced, editable_inner_corner_reinforced, editable_wall_reinforced, editable_fence_reinforced,
+      editable_trap_door, editable_trap_door_reinforced, editable_door, editable_door_reinforced, editable_pressure_plate;
 
   @SubscribeEvent
   public void registerContent(RegisterContentEvent event) {
@@ -73,6 +79,8 @@ public class RegistryManager {
 
     editable_door = event.addBlock(new BlockEditableDoor(editable_block, SoundType.WOOD, 1.0f, "editable_door", TileEditableBlock.class).setResistance(0f).setFlammable(true).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
     editable_door_reinforced = event.addBlock(new BlockEditableDoor(editable_block_reinforced, SoundType.WOOD, 1.0f, "editable_door_reinforced", TileEditableBlock.class).setResistance(6000f).setFlammable(false).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
+
+    editable_pressure_plate = event.addBlock(new BlockEditablePressurePlate(editable_block, BlockPressurePlate.Sensitivity.EVERYTHING, SoundType.WOOD, 1.0f, "editable_pressure_plate", TileEditableBlock.class).setResistance(0f).setFlammable(true).setModelCustom(true).setCreativeTab(Blockcraftery.tab));
   }
 
   @SideOnly(Side.CLIENT)
