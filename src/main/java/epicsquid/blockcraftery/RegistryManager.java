@@ -13,6 +13,7 @@ import epicsquid.blockcraftery.block.BlockEditableWall;
 import epicsquid.blockcraftery.block.EditableBlockColors;
 import epicsquid.blockcraftery.tile.TileEditableBlock;
 import epicsquid.mysticallib.LibRegistry;
+import epicsquid.mysticallib.block.BlockDoorBase;
 import epicsquid.mysticallib.block.BlockPressurePlateBase;
 import epicsquid.mysticallib.block.BlockSlabBase;
 import epicsquid.mysticallib.event.RegisterColorHandlersEvent;
@@ -118,20 +119,20 @@ public class RegistryManager {
 
     RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door", new ItemStack(editable_trap_door, 2), "SS ", "SS ", 'S', editable_block);
     RecipeRegistry.registerShaped(event.getRegistry(), "editable_trap_door_reinforced", new ItemStack(editable_trap_door_reinforced, 2),"SS ", "SS ", 'S', editable_block_reinforced);
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door", new ItemStack(editable_door, 3), "SS ", "SS ", "SS ", 'S', editable_block);
-    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door_reinforced", new ItemStack(editable_door_reinforced, 3),"SS ", "SS ", "SS ", 'S', editable_block_reinforced);
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door", new ItemStack(((BlockDoorBase) editable_door).getItemBlock(), 3), "SS ", "SS ", "SS ", 'S', editable_block);
+    RecipeRegistry.registerShaped(event.getRegistry(), "editable_door_reinforced", new ItemStack(((BlockDoorBase)editable_door_reinforced).getItemBlock(), 3),"SS ", "SS ", "SS ", 'S', editable_block_reinforced);
 
     RecipeRegistry.registerShaped(event.getRegistry(), "editable_pressure_plate", new ItemStack(editable_pressure_plate_all, 2), "PSS", 'S', editable_block, 'P',
         Blocks.WOODEN_PRESSURE_PLATE);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_mobs", new ItemStack(editable_pressure_plate_mobs, 1), editable_pressure_plate_all);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_items", new ItemStack(editable_pressure_plate_items, 1), editable_pressure_plate_mobs);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_player", new ItemStack(editable_pressure_plate_player, 1), editable_pressure_plate_items);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_all", new ItemStack(editable_pressure_plate_all, 1), editable_pressure_plate_player);
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_mobs", new ItemStack(editable_pressure_plate_mobs, 1), new ItemStack(editable_pressure_plate_all));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_items", new ItemStack(editable_pressure_plate_items, 1), new ItemStack(editable_pressure_plate_mobs));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_player", new ItemStack(editable_pressure_plate_player, 1), new ItemStack(editable_pressure_plate_items));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_all", new ItemStack(editable_pressure_plate_all, 1), new ItemStack(editable_pressure_plate_player));
     RecipeRegistry.registerShaped(event.getRegistry(), "editable_pressure_plate_reinforced", new ItemStack(editable_pressure_plate_all_reinforced, 2), "PSS", 'S', editable_block_reinforced, 'P',
         Blocks.WOODEN_PRESSURE_PLATE);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_mobs_reinforced", new ItemStack(editable_pressure_plate_mobs_reinforced, 1), editable_pressure_plate_all_reinforced);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_items_reinforced", new ItemStack(editable_pressure_plate_items_reinforced, 1), editable_pressure_plate_mobs_reinforced);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_player_reinforced", new ItemStack(editable_pressure_plate_player_reinforced, 1), editable_pressure_plate_items_reinforced);
-    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_all_reinforced", new ItemStack(editable_pressure_plate_all_reinforced, 1), editable_pressure_plate_player_reinforced);
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_mobs_reinforced", new ItemStack(editable_pressure_plate_mobs_reinforced, 1), new ItemStack(editable_pressure_plate_all_reinforced));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_items_reinforced", new ItemStack(editable_pressure_plate_items_reinforced, 1), new ItemStack(editable_pressure_plate_mobs_reinforced));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_player_reinforced", new ItemStack(editable_pressure_plate_player_reinforced, 1), new ItemStack(editable_pressure_plate_items_reinforced));
+    RecipeRegistry.registerShapeless(event.getRegistry(), "editable_pressure_plate_all_reinforced", new ItemStack(editable_pressure_plate_all_reinforced, 1), new ItemStack(editable_pressure_plate_player_reinforced));
   }
 }
