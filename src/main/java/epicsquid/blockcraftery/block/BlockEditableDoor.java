@@ -45,16 +45,16 @@ public class BlockEditableDoor extends BlockTEDoorBase implements IEditableBlock
     return super.getLightOpacity(state, world, pos);
   }
 
-  @Override
-  @Nonnull
-  public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty(LIGHT, meta == 1);
-  }
-
-  @Override
-  public int getMetaFromState(@Nonnull IBlockState state) {
-    return (state.getValue(LIGHT) ? 1 : 0);
-  }
+//  @Override
+//  @Nonnull
+//  public IBlockState getStateFromMeta(int meta) {
+//    return getDefaultState().withProperty(LIGHT, meta == 1);
+//  }
+//
+//  @Override
+//  public int getMetaFromState(@Nonnull IBlockState state) {
+//    return (state.getValue(LIGHT) ? 1 : 0);
+//  }
 
   @Override
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {

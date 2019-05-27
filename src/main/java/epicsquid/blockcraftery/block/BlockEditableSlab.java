@@ -46,16 +46,19 @@ public class BlockEditableSlab extends BlockTESlabBase implements IEditableBlock
     }
     return super.getLightOpacity(state, world, pos);
   }
-
   @Override
   @Nonnull
   public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty(LIGHT, meta == 1);
+    IBlockState iblockstate = this.getDefaultState();
+    if (!this.isDouble()) {
+      iblockstate = iblockstate.withProperty(HALF, meta >> 1 == 1 ? EnumBlockHalf.BOTTOM : EnumBlockHalf.TOP);
+    }
+    return iblockstate.withProperty(LIGHT, meta == 1);
   }
 
   @Override
   public int getMetaFromState(@Nonnull IBlockState state) {
-    return (state.getValue(LIGHT) ? 1 : 0);
+    return (state.getValue(LIGHT) ? 1 : 0) | (state.getValue(HALF) == EnumBlockHalf.BOTTOM ? 2 : 0);
   }
 
   @Override
