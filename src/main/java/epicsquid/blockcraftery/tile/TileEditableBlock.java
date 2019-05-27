@@ -60,6 +60,7 @@ public class TileEditableBlock extends TileBase {
           }
           world.notifyBlockUpdate(pos, state, newState, 8);
           world.playSound(player, pos, SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1f, 1f);
+          markDirty();
           return true;
         }
       }
@@ -73,6 +74,7 @@ public class TileEditableBlock extends TileBase {
       }
       hasGlowstone = true;
       world.playSound(player, pos, SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1f, 1f);
+      markDirty();
       return true;
     } else if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
       if (!world.isRemote && !player.capabilities.isCreativeMode && !ConfigManager.freeDecoration) {
