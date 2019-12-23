@@ -43,7 +43,8 @@ public class TileEditableBlock extends TileBase {
           markDirty();
           if (!player.capabilities.isCreativeMode && !ConfigManager.freeDecoration) {
             if (!world.isRemote && !player.capabilities.isCreativeMode && !stack.isEmpty()) {
-              world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack));
+              BlockPos offset = pos.offset(side);
+              world.spawnEntity(new EntityItem(world, offset.getX() + 0.5, offset.getY() + 0.5, offset.getZ() + 0.5, stack));
             }
             this.stack = player.getHeldItemMainhand().copy();
             stack.setCount(1);
@@ -78,7 +79,8 @@ public class TileEditableBlock extends TileBase {
       return true;
     } else if (player.isSneaking() && player.getHeldItemMainhand().isEmpty()) {
       if (!world.isRemote && !player.capabilities.isCreativeMode && !ConfigManager.freeDecoration) {
-        world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack));
+        BlockPos offset = pos.offset(side);
+        world.spawnEntity(new EntityItem(world, offset.getX() + 0.5, offset.getY() + 0.5, offset.getZ() + 0.5, stack));
       }
       stack = ItemStack.EMPTY;
       this.state = Blocks.AIR.getDefaultState();
