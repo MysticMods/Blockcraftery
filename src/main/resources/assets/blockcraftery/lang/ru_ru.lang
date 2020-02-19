@@ -1,0 +1,20 @@
+# Перевод от Big_Energy & Lewui
+itemGroup.blockcraftery=Blockcraftery
+
+tile.editable_block.name=Каркасный блок
+tile.editable_slab.name=Каркасная плита
+tile.editable_stairs.name=Каркасная лестница 
+tile.editable_slant.name=Каркасный уклон
+tile.editable_inner_corner.name=Обрамлённый внутренний угол
+tile.editable_outer_corner.name=Обрамлённый внешний угол
+tile.editable_wall.name=Каркасная стена
+tile.editable_fence.name=Каркасный забор
+
+tile.editable_block_reinforced.name=Армированный каркасный блок
+tile.editable_slab_reinforced.name=Армированный каркасная плита
+tile.editable_stairs_reinforced.name=Армированный каркасная лестница
+tile.editable_slant_reinforced.name=Армированный каркасный уклон
+tile.editable_inner_corner_reinforced.name=Армированный обрамлённый внутренний угол
+tile.editable_outer_corner_reinforced.name=Армированный Обрамлённый внешний угол
+tile.editable_wall_reinforced.name=Армированный каркасная стена
+tile.editable_fence_reinforced.name=Армированный каркасный забор
