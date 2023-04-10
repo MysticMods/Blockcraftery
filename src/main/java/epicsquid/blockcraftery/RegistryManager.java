@@ -61,7 +61,7 @@ public class RegistryManager {
     editable_stairs_reinforced = event.addBlock(new BlockEditableStairs(editable_block_reinforced.getDefaultState(), SoundType.WOOD, 1.0f, "editable_stairs_reinforced", TileEditableBlock.class).setResistance(6000f).setFlammable(false).setCreativeTab(Blockcraftery.tab));
     BlockSlabBase editable_double_slab_reinforced_temp = (BlockSlabBase) (new BlockEditableSlab(Material.WOOD, SoundType.WOOD, 1.0f, "editable" + "_double_slab" + "_reinforced", editable_block_reinforced.getDefaultState(), true, null, TileEditableBlock.class).setResistance(6000f).setFlammable(false)
         .setCreativeTab(Blockcraftery.tab));
-    BlockSlabBase editable_slab_reinforced_temp = (BlockSlabBase) (new BlockEditableSlab(Material.WOOD, SoundType.WOOD, 1.0f, "editable" + "_slab" + "_reinforced", editable_block_reinforced.getDefaultState(), false, editable_double_slab_temp, TileEditableBlock.class).setResistance(6000f)
+    BlockSlabBase editable_slab_reinforced_temp = (BlockSlabBase) (new BlockEditableSlab(Material.WOOD, SoundType.WOOD, 1.0f, "editable" + "_slab" + "_reinforced", editable_block_reinforced.getDefaultState(), false, editable_double_slab_reinforced_temp, TileEditableBlock.class).setResistance(6000f)
         .setFlammable(false).setCreativeTab(Blockcraftery.tab));
     editable_double_slab_reinforced_temp.slab = editable_slab_reinforced_temp;
     editable_slab_reinforced = event.addBlock(editable_slab_reinforced_temp.setCreativeTab(Blockcraftery.tab));
